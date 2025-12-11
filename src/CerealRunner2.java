@@ -53,7 +53,7 @@ public class CerealRunner2 {
                 int calories = Integer.parseInt(splitData[1]);
                 int fiber = Integer.parseInt(splitData[2]);
                 int carbohydrates = Integer.parseInt(splitData[3]);
-                double cups = Integer.parseInt(splitData[4]);
+                double cups = Double.parseDouble(splitData[4]);
                 // convert the rest
                 // then fix this line:
                 cereals.add(new Cereal(name, calories, fiber, carbohydrates, cups));
