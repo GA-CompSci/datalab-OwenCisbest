@@ -1,7 +1,6 @@
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.io.File;
-import java.io.FileNotFoundException;
 
 /**
  * CerealRunner2 - CSV File Parser
@@ -14,7 +13,7 @@ import java.io.FileNotFoundException;
 public class CerealRunner2 {
     // Declare your instance variable here
     // You need an ArrayList to store Cereal objects
-
+    ArrayList<Cereal> cereals;
 
 
     /**
@@ -33,8 +32,37 @@ public class CerealRunner2 {
      * 6. Close the scanner
      * 7. Handle FileNotFoundException with try-catch
      */
+    @SuppressWarnings("UseSpecificCatch")
     public CerealRunner2() {
+        cereals = new ArrayList<>();
 
+        try {
+            File cerealFile = new File("cerealSubset.csv");
+            Scanner fileScanner = new Scanner(cerealFile);
+
+            while (true) {
+                if (!fileScanner.hasNextLine()) {
+                    fileScanner.close();
+                    System.out.println("Loaded " + cereals.size() + " cereals.\n");
+                    break;
+                }
+                // do more stuff
+                String theNextLine = fileScanner.nextLine();
+                String[] splitData = theNextLine.split(",");
+                String name = splitData[0];
+                int calories = Integer.parseInt(splitData[1]);
+                int fiber = Integer.parseInt(splitData[2]);
+                int carbohydrates = Integer.parseInt(splitData[3]);
+                double cups = Integer.parseInt(splitData[4]);
+                // convert the rest
+                // then fix this line:
+                cereals.add(new Cereal(name, calories, fiber, carbohydrates, cups));
+
+            }
+        } catch(Exception e) {
+            //Catch all exceptions = very lazy programming. We is lazy. :)
+            System.out.println("something went wrong. :/" + e);
+        }
 
 
 
@@ -44,7 +72,7 @@ public class CerealRunner2 {
      * Getter method for the cereals ArrayList
      */
     public ArrayList<Cereal> getCereals() {
-        return null;  // Fix this
+        return cereals;  // Fix this
     }
 
     /**
@@ -52,7 +80,7 @@ public class CerealRunner2 {
      */
     public static void main(String[] args) {
         // Create a CerealRunner2 object
-
+        CerealRunner2 theInstanceOfThisFile = new CerealRunner2();
 
         // Print the number of records created
         // Should output: "76 records created."
