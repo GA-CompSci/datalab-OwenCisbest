@@ -39,11 +39,8 @@ public class CerealRunner3 {
                 newArr.add(c);
             }
         }
-
-
-
-
-        return newArr;  // Replace with your code
+        
+        return newArr;  
     }
 
     /**
@@ -64,11 +61,25 @@ public class CerealRunner3 {
      * @return Cereal with highest fiber percentage, or null if empty
      */
     public static Cereal highestPercentFiber() {
+        Cereal bestCereal = null;
+        if(cereals.isEmpty()) System.out.println("Your cereals list is empty.");
+        else{
+            bestCereal = cereals.get(1);
+            for(Cereal s : cereals){
+                double fiberRatio = s.getFiber()/s.getCalories();
+                if(fiberRatio > (bestCereal.getFiber()/bestCereal.getCalories())){
+                    bestCereal = s;
+                }  
+            }
+        }    
+
+        
 
 
 
 
-        return null;  // Replace with your code
+
+        return bestCereal;  // Replace with your code
     }
 
     /**
@@ -80,10 +91,10 @@ public class CerealRunner3 {
      * @return net carbs
      */
     public static double findNetCarbs(Cereal c) {
+        double netCarbs = c.getCarbohydrates() - c.getFiber();
 
 
-
-        return 0;  // Replace with your code
+        return netCarbs;  // Replace with your code
     }
 
     // ========================================================================

@@ -72,7 +72,7 @@ public class CerealRunner2 {
      * Getter method for the cereals ArrayList
      */
     public ArrayList<Cereal> getCereals() {
-        return cereals;  // Fix this
+        return cereals;  
     }
 
     /**
